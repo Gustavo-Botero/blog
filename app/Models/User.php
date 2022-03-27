@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -41,4 +41,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Relación con la tabla blog
+     *
+     * @return void
+     */
+    public function blogs()
+    {
+        return $this->hasMany(BlogModel::class);
+    }
+
+    /**
+     * Relación con la tabla user_rol
+     *
+     * @return void
+     */
+    public function usersRol()
+    {
+        return $this->hasMany(UserRolModel::class);
+    }
 }

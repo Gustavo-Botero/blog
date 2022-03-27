@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class BlogModel extends Model
 {
@@ -18,4 +18,14 @@ class BlogModel extends Model
         'imagen',
         'user_id',
     ];
+
+    /**
+     * Relación con la tabal user
+     *
+     * @return void
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
